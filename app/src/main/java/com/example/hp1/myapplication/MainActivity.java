@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Alert Dialog");
             builder.setMessage("Alert dialog");
-            builder.setNegativeButton("s", null);
+            builder.setNegativeButton("Cancel", null);
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
                 @Override
