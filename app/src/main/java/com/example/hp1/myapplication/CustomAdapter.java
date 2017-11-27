@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hp1 on 28/09/2017.
  */
@@ -18,7 +20,7 @@ import android.widget.Toast;
 public class CustomAdapter  extends ArrayAdapter<Pc>{
 
 private int resource;
-    public CustomAdapter(Context context, int resource,Pc[] objects) {
+    public CustomAdapter(Context context, int resource, ArrayList objects) {
         super(context, resource, objects);
         this.resource=resource;
 
@@ -31,17 +33,17 @@ private int resource;
         Pc item = getItem(position);
         TextView title = (TextView) cuView.findViewById(R.id.textView);
         ImageView image = (ImageView) cuView.findViewById(R.id.imageView);
-        Button btnClick = (Button) cuView.findViewById(R.id.button2);
+     //   Button btnClick = (Button) cuView.findViewById(R.id.bt);
 
         title.setText(item.getTitle());
         image.setImageResource(item.getImageId());
 
-        btnClick.setOnClickListener(new View.OnClickListener() {
+/*        btnClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Item Poisition: " + position, Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
         return cuView;
 
     }}

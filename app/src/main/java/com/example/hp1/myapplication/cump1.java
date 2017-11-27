@@ -19,26 +19,29 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static com.example.hp1.myapplication.R   .id.home;
+import static com.example.hp1.myapplication.R.id.home;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
+public class cump1 extends MainActivity{
 
-    Button bt,bt3;
-    EditText et;
 
+    ListView PCI;
+    ArrayList prgmName;
+
+    public static int [] PCImage={R.drawable.f1,R.drawable.f2,R.drawable.f3,R.drawable.f4,
+            R.drawable.f5,R.drawable.f6,R.drawable.f7,R.drawable.f8,R.drawable.f9};
+    public static String [] PCPriceList={"a","b","c","d","e","f","g","h","i"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        et = (EditText) findViewById(R.id.et);
-        bt = (Button) findViewById(R.id.bt);
-        bt3 = (Button) findViewById(R.id.bt3);
-        bt3.setOnClickListener(this);
-        bt.setOnClickListener(this);
+        setContentView(R.layout.activity_cump1);
+        prgmName=new ArrayList();
+        for(int i=0;i<PCImage.length;i++)
+            prgmName.add(new Pc(PCPriceList[i],PCImage[i]));
 
-
-
+        PCI=(ListView) findViewById(R.id.lvp);
+        CustomAdapter adapter = new CustomAdapter(this,R.layout.custom_row2,prgmName);
+        PCI.setAdapter(adapter);
     }
 
 
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.action_setting:
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(cump1.this);
                 builder.setMessage("Are you sure you want to exit?");
                 builder.setCancelable(true);
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -75,34 +78,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    @Override
-    public void onClick(View v) {
-        int value  = Integer.parseInt(et.getText().toString());
-        if (value == 5000)
-        {
-
-            Intent i = new Intent();
-            i.setClass(this,cump1.class);
-
-            startActivity(i);
-        }
-        if(bt==v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Alert Dialog");
-            builder.setMessage("Alert dialog");
-            builder.setNegativeButton("Cancel", null);
-            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getApplicationContext(), "!!!", Toast.LENGTH_SHORT).show();
-
-                }
-            });
-            AlertDialog ad = builder.create();
-            ad.show();
-        }
-    }
 }
+
